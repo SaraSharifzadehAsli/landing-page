@@ -13,29 +13,21 @@ function submitHandler(e) {
   errorIcon.style.display = "none";
   const emailValue = emailInput.value;
   let ifSendData = true;
-  if (
-    emailValue.length === 0 ||
-    emailValue.indexOf("@") === -1 ||
-    emailValue.indexOf(".") === -1
-  ) {
+  const regex = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/;
+  const result = regex.test(emailValue);
+  if (!result) {
     errorMsg.style.display = "inline-block";
     errorBackground.style.border = "2px solid var(--soft-red)";
     errorIcon.style.display = "inline-block";
     ifSendData = false;
   }
   if (ifSendData) {
+    emailInput.value = "";
   }
 }
 
-// const test = document.querySelectorAll(".tabs a");
-// console.log(test);
 const tabButton = document.querySelectorAll(".tabs a");
 const tab = document.getElementsByClassName("tab");
-// tabButton.forEach((item, index, array) => item.addEventListener('click', openTabHandler(index)) {tab[i].style.display='inline-block'});
-
-// function openTabHandler (index) {
-
-// }
 
 for (let i = 0; i < tab.length; i++) {
   tabButton[i].addEventListener("click", (e) => {
@@ -60,18 +52,23 @@ for (let i = 0; i < tab.length; i++) {
 const faqQuestion = document.querySelectorAll(".faq__question__box");
 const faqAnswer = document.querySelectorAll(".faq__answer");
 const arrow = document.querySelectorAll(".faq__question__arrow");
-const arrowStyle = [];
 
 for (let i = 0; i < faqQuestion.length; i++) {
-  arrowStyle[i] = getComputedStyle(arrow[i]);
   faqQuestion[i].addEventListener("click", (e) => {
     e.preventDefault();
     faqAnswer[i].classList.toggle("hidden");
     arrow[i].classList.toggle("arrow--up");
-    if (arrowStyle[i].color === "rgb(83, 104, 223)") {
-      arrow[i].style.color = "var(--soft-red)";
-    } else {
-      arrow[i].style.color = "var(--soft-blue)";
-    }
   });
 }
+
+const closeIconNav = document.querySelector(".nav-modal__close-icon");
+const navigationModal = document.querySelector(".nav-modal");
+const hamburgerMenu = document.querySelector(".header__hamburger");
+
+closeIconNav.addEventListener("click", (e) => {
+  navigationModal.style.visibility = "hidden";
+});
+
+hamburgerMenu.addEventListener("click", (e) => {
+  navigationModal.style.visibility = "visible";
+});

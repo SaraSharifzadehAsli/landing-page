@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap");
 /* color: hsl(228, 45%, 44%); */
 /* color: #5267DF; */
 :root {
@@ -7,9 +7,9 @@
   --grayish-blue: hsl(229, 8%, 60%);
   --very-dark-blue: hsl(229, 31%, 21%);
   --box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
-  --footer-color: #242946;
+  --footer-color: rgb(36, 41, 70);
   --transition: all 0.2s ease-in;
-  --border-gray: #e0e0e0;
+  --border-gray: rgb(224, 224, 224);
   --button-grey: #efefef;
   --white: #fff;
   --footer-color: #242946;
@@ -41,6 +41,7 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   font-family: "Rubik", sans-serif;
+  font-weight: 400;
   text-align: center;
 }
 /*
@@ -71,10 +72,9 @@ a {
 }
 
 button {
-  font-weight: 600;
+  font-weight: 500;
   border: none;
   cursor: pointer;
-  border-radius: 5px;
   box-shadow: var(--box-shadow);
   transition: var(--transition);
 }
@@ -101,12 +101,10 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
-/*
-  8. Create a root stacking context
-*/
-#root,
-#__next {
-  isolation: isolate;
+
+h1,
+h2 {
+  font-weight: 500;
 }
 
 .header {
@@ -164,10 +162,10 @@ h6 {
 .main__image,
 .tab__images {
   position: relative;
+  z-index: -1;
 }
 
-.main__image--hero,
-.tab__images img {
+.main__image--hero {
   padding: 10px;
   margin: auto;
 }
@@ -273,6 +271,7 @@ h6 {
 
 .tab__images img {
   margin: auto;
+  padding: 30px;
   padding-bottom: 50px;
 }
 
@@ -345,13 +344,14 @@ h6 {
   display: none;
 }
 
-.arrow--up {
+.faq__question__arrow.arrow--up {
   transform: scaleY(-1);
+  color: var(--soft-red);
 }
 
 .faq__question__text {
   color: var(--very-dark-blue);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 18px;
   text-align: left;
   transition: var(--transition);
@@ -412,7 +412,7 @@ h6 {
 .contact__button:hover {
   background-color: var(--white);
   color: var(--soft-red);
-  outline: 2px solid var(--soft-red);
+  border: 2px solid var(--soft-red);
 }
 
 .contact__input__error-img {
@@ -474,6 +474,70 @@ h6 {
 
 .attribution {
   font-size: 11px;
+}
+
+.nav-modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--footer-color);
+  opacity: 0.9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  visibility: hidden;
+}
+
+.nav-modal__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: var(--white);
+}
+
+.nav-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  padding: 40px 30px;
+}
+
+.nav-modal__close-icon,
+.nav-modal__logo-bookmark {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.nav-modal__content a {
+  width: calc(100vw - 60px);
+  border-top: 1px solid rgba(224, 224, 224, 0.9);
+  text-decoration: none;
+  padding: 30px;
+  letter-spacing: 2px;
+  font-size: 18px;
+}
+
+.nav-modal__content a:nth-child(4) {
+  border-bottom: 1px solid rgba(224, 224, 224, 0.9);
+}
+
+.nav-modal__content a:last-child {
+  margin-top: 15px;
+  padding: 10px;
+  border: 2px solid var(--white);
+  border-radius: 5px;
+}
+
+.nav-modal--facebook,
+.nav-modal--twitter {
+  display: inline-block;
+  margin: 40px 30px;
+  cursor: pointer;
 }
 
 @media (min-width: 1000px) {
@@ -595,5 +659,9 @@ h6 {
     flex-direction: row;
     justify-content: space-between;
     padding: 50px 150px;
+  }
+
+  .nav-modal {
+    display: none;
   }
 }
