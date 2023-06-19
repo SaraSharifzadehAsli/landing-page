@@ -367,6 +367,11 @@ h2 {
   color: var(--white);
 }
 
+.contact__text {
+  letter-spacing: 5px;
+  font-size: 12px;
+}
+
 .contact__title {
   padding: 10px 0px 40px;
 }
