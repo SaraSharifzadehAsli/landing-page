@@ -29,25 +29,29 @@ function submitHandler(e) {
 const tabButton = document.querySelectorAll(".tabs a");
 const tab = document.getElementsByClassName("tab");
 
-for (let i = 0; i < tab.length; i++) {
-  tabButton[i].addEventListener("click", (e) => {
-    e.preventDefault();
-    const width = window.innerWidth > 0 ? window.innerWidth : screen.width;
-    if (width > 1000) {
-      tab[i].style.display = "flex";
-    } else {
-      tab[i].style.display = "block";
-    }
-
-    tabButton[i].style.borderBottom = "3px solid var(--soft-red)";
-    for (let z = 0; z < tab.length; z++) {
-      if (z !== i) {
-        tab[z].style.display = "none";
-        tabButton[z].style.borderBottom = "none";
+function tabHandler() {
+  for (let i = 0; i < tab.length; i++) {
+    tabButton[i].addEventListener("click", (e) => {
+      e.preventDefault();
+      const width = window.innerWidth > 0 ? window.innerWidth : screen.width;
+      if (width > 1000) {
+        tab[i].style.display = "flex";
+      } else {
+        tab[i].style.display = "block";
       }
-    }
-  });
+
+      tabButton[i].style.borderBottom = "3px solid var(--soft-red)";
+      for (let z = 0; z < tab.length; z++) {
+        if (z !== i) {
+          tab[z].style.display = "none";
+          tabButton[z].style.borderBottom = "none";
+        }
+      }
+    });
+  }
 }
+
+tabHandler();
 
 const faqQuestion = document.querySelectorAll(".faq__question__box");
 const faqAnswer = document.querySelectorAll(".faq__answer");
@@ -55,7 +59,6 @@ const arrow = document.querySelectorAll(".faq__question__arrow");
 
 for (let i = 0; i < faqQuestion.length; i++) {
   faqQuestion[i].addEventListener("click", (e) => {
-    e.preventDefault();
     faqAnswer[i].classList.toggle("hidden");
     arrow[i].classList.toggle("arrow--up");
   });
@@ -66,9 +69,11 @@ const navigationModal = document.querySelector(".nav-modal");
 const hamburgerMenu = document.querySelector(".header__hamburger");
 
 closeIconNav.addEventListener("click", (e) => {
-  navigationModal.style.visibility = "hidden";
+  navigationModal.style.right = "-1000px";
+  // navigationModal.style.visibility = "hidden";
 });
 
 hamburgerMenu.addEventListener("click", (e) => {
-  navigationModal.style.visibility = "visible";
+  navigationModal.style.right = "0";
+  // navigationModal.style.visibility = "visible";
 });
